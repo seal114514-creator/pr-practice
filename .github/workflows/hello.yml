@@ -1,0 +1,26 @@
+name: hello
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 打印一句问候
+        run: echo "你好，GitHub Actions！我是 seal114514-creator 的机器人。"
+
+      - name: 检查 hello.md 是否存在
+        run: |
+          if [ -f hello.md ]; then
+            echo "✅ hello.md 找到了"
+            wc -l hello.md
+          else
+            echo "❌ hello.md 不存在"
+            exit 1
+          fi
